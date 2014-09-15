@@ -129,7 +129,8 @@ namespace Perspex.Direct2D1
                 if (visual.RenderTransform != null)
                 {
                     Matrix current = context.CurrentTransform;
-                    Matrix offset = Matrix.Translation(visual.TransformOrigin.ToPixels(visual.Bounds.Size));
+                    Point origin = visual.TransformOrigin.ToPixels(visual.Bounds.Size);
+                    Matrix offset = Matrix.Translation(origin);
                     transform = -current * -offset * visual.RenderTransform.Value * offset * current;
                 }
 
@@ -143,11 +144,6 @@ namespace Perspex.Direct2D1
                     {
                         this.Render(child, context);
                     }
-                }
-
-                if (visual.RenderTransform != null)
-                {
-                    ((RotateTransform)visual.RenderTransform).Angle++;
                 }
             }
         }

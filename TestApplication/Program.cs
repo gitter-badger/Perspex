@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using Perspex;
@@ -101,137 +102,165 @@ namespace TestApplication
 
             Window window = new Window
             {
-                Content = new TabControl
+                //Content = new TabControl
+                //{
+                //    Items = new[]
+                //    {
+                //        new TabItem
+                //        {
+                //            Header = "Buttons",
+                //            Content = new StackPanel
+                //            {
+                //                Orientation = Orientation.Vertical,
+                //                HorizontalAlignment = HorizontalAlignment.Center,
+                //                VerticalAlignment = VerticalAlignment.Center,
+                //                Gap = 8,
+                //                MinWidth = 120,
+                //                Children = new Controls
+                //                {
+                //                    new Button
+                //                    {
+                //                        Content = "Button",
+                //                    },
+                //                    new Button
+                //                    {
+                //                        Content = "Button",
+                //                        Background = new SolidColorBrush(0xcc119eda),
+                //                    },
+                //                    new CheckBox
+                //                    {
+                //                        Content = "Checkbox",
+                //                    },
+                //                }
+                //            },
+                //        },
+                //        new TabItem
+                //        {
+                //            Header = "Text",
+                //            Content = new StackPanel
+                //            {
+                //                Orientation = Orientation.Vertical,
+                //                HorizontalAlignment = HorizontalAlignment.Center,
+                //                VerticalAlignment = VerticalAlignment.Center,
+                //                Gap = 8,
+                //                Width = 120,
+                //                Children = new Controls
+                //                {
+                //                    new TextBlock
+                //                    {
+                //                        Text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin venenatis dui quis libero suscipit tincidunt.",
+                //                    },
+                //                    new TextBox
+                //                    {
+                //                        Text = "Text Box",
+                //                    },
+                //                }
+                //            },
+                //        },
+                //        new TabItem
+                //        {
+                //            Header = "Images",
+                //            Content = new StackPanel
+                //            {
+                //                Orientation = Orientation.Vertical,
+                //                HorizontalAlignment = HorizontalAlignment.Center,
+                //                VerticalAlignment = VerticalAlignment.Center,
+                //                Gap = 8,
+                //                Width = 120,
+                //                Children = new Controls
+                //                {
+                //                    new Image
+                //                    {
+                //                        Source = new Bitmap("github_icon.png"),
+                //                        Width = 200,
+                //                    },
+                //                }
+                //            },
+                //        },
+                //        new TabItem
+                //        {
+                //            Header = "Lists",
+                //            IsSelected = true,
+                //            Content = new StackPanel
+                //            {
+                //                Orientation = Orientation.Horizontal,
+                //                HorizontalAlignment = HorizontalAlignment.Center,
+                //                VerticalAlignment = VerticalAlignment.Center,
+                //                Gap = 8,
+                //                Children = new Controls
+                //                {
+                //                    new TreeView
+                //                    {
+                //                        Id = "treeView",
+                //                        Items = treeData,
+                //                    },
+                //                    new StackPanel
+                //                    {
+                //                        Orientation = Orientation.Vertical,
+                //                        Gap = 2.0,
+                //                        Children = new Controls
+                //                        {
+                //                            new TextBox
+                //                            {
+                //                                Id = "newTreeViewItemText",
+                //                                Text = "New Item"
+                //                            },
+                //                            new Button
+                //                            {
+                //                                Id = "addTreeViewItem",
+                //                                Content = "Add",
+                //                            },
+                //                        }
+                //                    },
+                //                }
+                //            },
+                //        },
+                //    }
+                //}
+                Content = new Border
                 {
-                    Items = new[]
+                    Background = Brushes.Chartreuse,
+                    Width = 100,
+                    Height = 100,
+                    HorizontalAlignment = HorizontalAlignment.Center,
+                    VerticalAlignment = VerticalAlignment.Center,
+                    RenderTransform = new RotateTransform(0),
+                    Content = new Border
                     {
-                        new TabItem
-                        {
-                            Header = "Buttons",
-                            Content = new StackPanel
-                            {
-                                Orientation = Orientation.Vertical,
-                                HorizontalAlignment = HorizontalAlignment.Center,
-                                VerticalAlignment = VerticalAlignment.Center,
-                                Gap = 8,
-                                MinWidth = 120,
-                                Children = new Controls
-                                {
-                                    new Button
-                                    {
-                                        Content = "Button",
-                                    },
-                                    new Button
-                                    {
-                                        Content = "Button",
-                                        Background = new SolidColorBrush(0xcc119eda),
-                                    },
-                                    new CheckBox
-                                    {
-                                        Content = "Checkbox",
-                                    },
-                                }
-                            },
-                        },
-                        new TabItem
-                        {
-                            Header = "Text",
-                            Content = new StackPanel
-                            {
-                                Orientation = Orientation.Vertical,
-                                HorizontalAlignment = HorizontalAlignment.Center,
-                                VerticalAlignment = VerticalAlignment.Center,
-                                Gap = 8,
-                                Width = 120,
-                                Children = new Controls
-                                {
-                                    new TextBlock
-                                    {
-                                        Text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin venenatis dui quis libero suscipit tincidunt.",
-                                    },
-                                    new TextBox
-                                    {
-                                        Text = "Text Box",
-                                    },
-                                }
-                            },
-                        },
-                        new TabItem
-                        {
-                            Header = "Images",
-                            Content = new StackPanel
-                            {
-                                Orientation = Orientation.Vertical,
-                                HorizontalAlignment = HorizontalAlignment.Center,
-                                VerticalAlignment = VerticalAlignment.Center,
-                                Gap = 8,
-                                Width = 120,
-                                Children = new Controls
-                                {
-                                    new Image
-                                    {
-                                        Source = new Bitmap("github_icon.png"),
-                                        Width = 200,
-                                    },
-                                }
-                            },
-                        },
-                        new TabItem
-                        {
-                            Header = "Lists",
-                            IsSelected = true,
-                            Content = new StackPanel
-                            {
-                                Orientation = Orientation.Horizontal,
-                                HorizontalAlignment = HorizontalAlignment.Center,
-                                VerticalAlignment = VerticalAlignment.Center,
-                                Gap = 8,
-                                Children = new Controls
-                                {
-                                    new TreeView
-                                    {
-                                        Id = "treeView",
-                                        Items = treeData,
-                                    },
-                                    new StackPanel
-                                    {
-                                        Orientation = Orientation.Vertical,
-                                        Gap = 2.0,
-                                        Children = new Controls
-                                        {
-                                            new TextBox
-                                            {
-                                                Id = "newTreeViewItemText",
-                                                Text = "New Item"
-                                            },
-                                            new Button
-                                            {
-                                                Id = "addTreeViewItem",
-                                                Content = "Add",
-                                            },
-                                        }
-                                    },
-                                }
-                            },
-                        },
+                        Background = Brushes.Chocolate,
+                        Width = 50,
+                        Height = 50,
+                        HorizontalAlignment = HorizontalAlignment.Center,
+                        VerticalAlignment = VerticalAlignment.Center,
                     }
                 }
             };
 
-            var treeView = window.FindControl<TreeView>("treeView");
-            var newTreeViewItemText = window.FindControl<TextBox>("newTreeViewItemText");
-            var addTreeViewItem = window.FindControl<Button>("addTreeViewItem");
-
-            addTreeViewItem.Click += (s, e) =>
+            var border = (Border)window.Content;
+            var rotate = (RotateTransform)border.RenderTransform;
+            var timer = new DispatcherTimer();
+            timer.Interval = new TimeSpan(10);
+            timer.Tick += (s, e) =>
             {
-                if (treeView.SelectedItem != null)
-                {
-                    ((Node)treeView.SelectedItem).Children.Add(new Node
-                    {
-                        Name = newTreeViewItemText.Text,
-                    });
-                }
+                rotate.Angle += 2;
+                window.InvalidateVisual();
             };
+            timer.Start();
+
+            //var treeView = window.FindControl<TreeView>("treeView");
+            //var newTreeViewItemText = window.FindControl<TextBox>("newTreeViewItemText");
+            //var addTreeViewItem = window.FindControl<Button>("addTreeViewItem");
+
+            //addTreeViewItem.Click += (s, e) =>
+            //{
+            //    if (treeView.SelectedItem != null)
+            //    {
+            //        ((Node)treeView.SelectedItem).Children.Add(new Node
+            //        {
+            //            Name = newTreeViewItemText.Text,
+            //        });
+            //    }
+            //};
 
             window.Show();
             Application.Current.Run(window);
