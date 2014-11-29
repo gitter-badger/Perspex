@@ -44,284 +44,49 @@ namespace TestApplication
 
     class Program
     {
-        private static PerspexList<Node> treeData = new PerspexList<Node>
-        {
-            new Node
-            {
-                Name = "Root 1",
-                Children = new PerspexList<Node>
-                {
-                    new Node
-                    {
-                        Name = "Child 1",
-                    },
-                    new Node
-                    {
-                        Name = "Child 2",
-                        Children = new PerspexList<Node>
-                        {
-                            new Node
-                            {
-                                Name = "Grandchild 1",
-                            },
-                            new Node
-                            {
-                                Name = "Grandmaster Flash",
-                            },
-                        }
-                    },
-                    new Node
-                    {
-                        Name = "Child 3",
-                    },
-                }
-            },
-            new Node
-            {
-                Name = "Root 2",
-            },
-        };
-
         static void Main(string[] args)
         {
             //LogManager.Enable(new TestLogger());
             //LogManager.Instance.LogLayoutMessages = true;
 
-            App application = new App
-            {
-                DataTemplates = new DataTemplates
-                {
-                    new TreeDataTemplate<Node>(
-                        x => new TextBlock { Text = x.Name },
-                        x => x.Children,
-                        x => true),
-                },
-            };
+            App application = new App();
 
             Window window = new Window
             {
                 Content = new Grid
                 {
-                    RowDefinitions = new RowDefinitions
+                    Width = 300,
+                    HorizontalAlignment = HorizontalAlignment.Center,
+                    VerticalAlignment = VerticalAlignment.Center,
+                    ColumnDefinitions = new ColumnDefinitions
                     {
-                        new RowDefinition(1, GridUnitType.Star),
-                        new RowDefinition(GridLength.Auto),
+                        new ColumnDefinition(GridLength.Auto),
+                        new ColumnDefinition(1, GridUnitType.Star),
+                        new ColumnDefinition(GridLength.Auto),
                     },
                     Children = new Controls
                     {
-                        new TabControl
+                        new Button
                         {
-                            Items = new[]
-                            {
-                                ButtonsTab(),
-                                TextTab(),
-                                ListsTab(),
-                                SlidersTab(),
-                                LayoutTab(),
-                            }
+                            Content = "Auto1",
+                            [Grid.ColumnProperty] = 0,
                         },
-                        new TextBlock
+                        new Button
                         {
-                            Text = "Press F12 for Dev Tools",
-                            HorizontalAlignment = HorizontalAlignment.Right,
-                            Margin = new Thickness(2),
-                            [Grid.RowProperty] = 1,
-                        }
+                            Content = "Star",
+                            [Grid.ColumnProperty] = 1,
+                        },
+                        new Button
+                        {
+                            Content = "Auto2",
+                            [Grid.ColumnProperty] = 2,
+                        },
                     }
                 },
             };
 
             window.Show();
             Application.Current.Run(window);
-        }
-
-        private static TabItem ButtonsTab()
-        {
-            return new TabItem
-            {
-                Header = "Buttons",
-                Content = new StackPanel
-                {
-                    Orientation = Orientation.Vertical,
-                    HorizontalAlignment = HorizontalAlignment.Center,
-                    VerticalAlignment = VerticalAlignment.Center,
-                    Gap = 8,
-                    MinWidth = 120,
-                    Children = new Controls
-                    {
-                        new Button
-                        {
-                            Content = "Button",
-                        },
-                        new Button
-                        {
-                            Content = "Button",
-                            Background = new SolidColorBrush(0xcc119eda),
-                        },
-                        new CheckBox
-                        {
-                            Content = "Checkbox",
-                        },
-                    }
-                },
-            };
-        }
-
-        private static TabItem TextTab()
-        {
-            return new TabItem
-            {
-                Header = "Text",
-                Content = new StackPanel
-                {
-                    Orientation = Orientation.Vertical,
-                    HorizontalAlignment = HorizontalAlignment.Center,
-                    VerticalAlignment = VerticalAlignment.Center,
-                    Gap = 8,
-                    Width = 120,
-                    Children = new Controls
-                    {
-                        new TextBlock
-                        {
-                            Text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin venenatis dui quis libero suscipit tincidunt.",
-                        },
-                        new TextBlock
-                        {
-                            Text = "Italic text.",
-                            FontStyle = FontStyle.Italic,
-                        },
-                        new TextBox
-                        {
-                            Text = "Text Box",
-                        },
-                    }
-                },
-            };
-        }
-
-        private static TabItem ImagesTab()
-        {
-            return new TabItem
-            {
-                Header = "Images",
-                Content = new StackPanel
-                {
-                    Orientation = Orientation.Vertical,
-                    HorizontalAlignment = HorizontalAlignment.Center,
-                    VerticalAlignment = VerticalAlignment.Center,
-                    Gap = 8,
-                    Width = 120,
-                    Children = new Controls
-                    {
-                        new Image
-                        {
-                            Source = new Bitmap("github_icon.png"),
-                            Width = 200,
-                        },
-                    }
-                },
-            };
-        }
-
-        private static TabItem ListsTab()
-        {
-            return new TabItem
-            {
-                Header = "Lists",
-                Content = new StackPanel
-                {
-                    Orientation = Orientation.Horizontal,
-                    HorizontalAlignment = HorizontalAlignment.Center,
-                    VerticalAlignment = VerticalAlignment.Center,
-                    Gap = 8,
-                    Children = new Controls
-                    {
-                        new TreeView
-                        {
-                            Id = "treeView",
-                            Items = treeData,
-                        },
-                    }
-                },
-            };
-        }
-
-        private static TabItem SlidersTab()
-        {
-            return new TabItem
-            {
-                Header = "Sliders",
-                Content = new StackPanel
-                {
-                    Orientation = Orientation.Horizontal,
-                    HorizontalAlignment = HorizontalAlignment.Center,
-                    VerticalAlignment = VerticalAlignment.Center,
-                    Gap = 8,
-                    Children = new Controls
-                    {
-                        new ScrollBar
-                        {
-                            Orientation = Orientation.Vertical,
-                            ViewportSize = 25,
-                            Value = 25,
-                            Height = 300,
-                        },
-                        new ScrollBar
-                        {
-                            Orientation = Orientation.Horizontal,
-                            ViewportSize = 25,
-                            Value = 25,
-                            Width = 300,
-                        },
-                    },
-                }
-            };
-        }
-
-        private static TabItem LayoutTab()
-        {
-            return new TabItem
-            {
-                Header = "Layout",
-                Content = new Grid
-                {
-                    ColumnDefinitions = new ColumnDefinitions
-                    {
-                        new ColumnDefinition(1, GridUnitType.Star),
-                        new ColumnDefinition(1, GridUnitType.Star),
-                    },
-                    Margin = new Thickness(50),
-                    Children = new Controls
-                    {
-                        new StackPanel
-                        {
-                            Orientation = Orientation.Vertical,
-                            Gap = 8,
-                            Children = new Controls
-                            {
-                                new Button { HorizontalAlignment = HorizontalAlignment.Left, Content = "Left Aligned" },
-                                new Button { HorizontalAlignment = HorizontalAlignment.Center, Content = "Center Aligned" },
-                                new Button { HorizontalAlignment = HorizontalAlignment.Right, Content = "Right Aligned" },
-                                new Button { HorizontalAlignment = HorizontalAlignment.Stretch, Content = "Stretch" },
-                            },
-                            [Grid.ColumnProperty] = 0,
-                        },
-                        new StackPanel
-                        {
-                            Orientation = Orientation.Horizontal,
-                            Gap = 8,
-                            Children = new Controls
-                            {
-                                new Button { VerticalAlignment = VerticalAlignment.Top, Content = "Top Aligned" },
-                                new Button { VerticalAlignment = VerticalAlignment.Center, Content = "Center Aligned" },
-                                new Button { VerticalAlignment = VerticalAlignment.Bottom, Content = "Bottom Aligned" },
-                                new Button { VerticalAlignment = VerticalAlignment.Stretch, Content = "Stretch" },
-                            },
-                            [Grid.ColumnProperty] = 1,
-                        },
-                    },
-                }
-            };
         }
     }
 }
